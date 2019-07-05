@@ -62,12 +62,23 @@ public class UnifiedDiffParser implements DiffParser {
         Diff currentDiff = new Diff();
         String currentLine;
         while ((currentLine = window.slideForward()) != null) {
+            ParserState lastState = state;
             state = state.nextState(window);
             switch (state) {
                 case INITIAL:
                     // nothing to do
                     break;
                 case HEADER:
+                    // The goal of the following is to make sure a diff is not
+                    // lost when a new header is encountered suddenly due to
+                    // diffs being concatenated.
+                    if ((lastState != ParserState.INITIAL) &&
+                            (lastState != ParserState.HEADER) &&
+                            (lastState != ParserState.END))
+                    {
+                        parsedDiffs.add(currentDiff);
+                        currentDiff = new Diff();
+                    }
                     parseHeader(currentDiff, currentLine);
                     break;
                 case FROM_FILE:
@@ -95,6 +106,13 @@ public class UnifiedDiffParser implements DiffParser {
                 default:
                     throw new IllegalStateException(String.format("Illegal parser state '%s", state));
             }
+        }
+
+        // Something like that may be needed to make sure no diffs are lost.
+        if (currentDiff.getHunks().size() > 0)
+        {
+            parsedDiffs.add(currentDiff);
+            currentDiff = new Diff();
         }
 
         return parsedDiffs;
