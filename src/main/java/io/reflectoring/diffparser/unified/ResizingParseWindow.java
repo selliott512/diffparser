@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
  *
  * @author Tom Hombergs <tom.hombergs@gmail.com>
  */
-@SuppressWarnings("UnusedDeclaration")
 public class ResizingParseWindow implements ParseWindow {
 
     private BufferedReader reader;

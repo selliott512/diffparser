@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Tests the diffparser with a diff created by Tortoise SVN.
  */
+@SuppressWarnings("deprecation")
 public class TortoiseDiffTest {
 
     @Test

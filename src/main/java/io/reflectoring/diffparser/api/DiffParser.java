@@ -28,7 +28,6 @@ import java.util.List;
  *
  * @author Tom Hombergs <tom.hombergs@gmail.com>
  */
-@SuppressWarnings("UnusedDeclaration")
 public interface DiffParser {
 
     /**

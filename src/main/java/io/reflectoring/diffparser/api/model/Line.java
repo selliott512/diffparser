@@ -21,7 +21,6 @@ package io.reflectoring.diffparser.api.model;
  *
  * @author Tom Hombergs <tom.hombergs@gmail.com>
  */
-@SuppressWarnings("UnusedDeclaration")
 public class Line {
 
     /**

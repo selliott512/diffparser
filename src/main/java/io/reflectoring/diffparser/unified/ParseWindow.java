@@ -31,7 +31,6 @@ public interface ParseWindow {
      *
      * @return the line number.
      */
-    @SuppressWarnings("UnusedDeclaration")
     int getFocusLineNumber();
 
     /**

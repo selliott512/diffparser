@@ -15,6 +15,7 @@ import junit.framework.Assert;
 /**
  * Tests the DiffParser with a diff created by the "svn diff" command.
  */
+@SuppressWarnings("deprecation")
 public class SvnDiffTest
 {
 
